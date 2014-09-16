@@ -5,6 +5,9 @@ var express = require('express'),
     path = require('path');
 
 var app = express();
+var nomo = require('node-monkey').start({
+	port: 3000
+});
 
 // config - all environments
 app.set('port', process.env.PORT || 3000);
@@ -15,7 +18,20 @@ app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
-app.use(app.router);
+
+//custom middleware before app.use(app.router)
+app.use(function (req, res, next) {
+  console.log("In comes a " + req.method + " to " + req.url);
+	
+	var real_value = Math.floor(Math.random()*2+1);
+	console.log("real_value: " + real_value);
+	req.real_value = real_value;
+	res.real_value = real_value;
+	
+  next();
+});
+
+app.use(app.router); //express.router
 app.use(express.static(path.join(__dirname, 'public')));
 
 // config - development only
