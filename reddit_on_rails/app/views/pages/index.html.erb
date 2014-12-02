@@ -1,3 +1,7 @@
-<h2>I AMA Homepage</h2>
+<h2>reddit for teh cool kids</h2>
 
-<%= link_to "Add a link", new_link_path %>
+<ul>
+  <% @links.each do |link| %>
+	<li><%= link_to "#{link.title}", link.url %></li>
+  <% end %>
+</ul>

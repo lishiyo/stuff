@@ -57,3 +57,5 @@ gem 'bootstrap-sass',          '3.2.0.0'
 # user auth
 gem 'devise'
 
+# UI
+gem 'will_paginate'

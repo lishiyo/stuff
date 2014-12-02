@@ -1,5 +1,7 @@
 class LinksController < ApplicationController
 	
+	before_action :authenticate_user!, only: [:new, :create]
+	
 	def show
 	end
 	
@@ -10,6 +12,7 @@ class LinksController < ApplicationController
 	def create
 		link = Link.create!(link_params)
 		if link.save
+			link.update!(user_id: current_user.id)
 			flash[:success] = "Link submitted!"
 			redirect_to root_url
 		else
@@ -21,7 +24,7 @@ class LinksController < ApplicationController
 	private 
 	
 	def link_params
-		params.require(:link).permit(:url, :title)
+		params.require(:link).permit(:url, :title, :user_id)
 	end
 	
 end
