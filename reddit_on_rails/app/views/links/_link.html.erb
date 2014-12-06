@@ -1,6 +1,9 @@
 <ul>
  
-	<li><%= link_to "#{link.title}", link.url %> | 
-		<%= button_to("Delete", link_path(link), method: :delete, form_class: "custom_button_to btn btn-info" ) if current_user && link.user_id == current_user.id %></li>
+	<li><%= link_to "#{link.title}", link.url %> 
+		<%= button_to("Delete", link_path(link), method: :delete, form_class: "custom_button_to btn btn-info" ) if is_owner?(link) %>
+		<br>
+		<%= link_to "comments", link_url(link) %>
+	</li>
   
 </ul>

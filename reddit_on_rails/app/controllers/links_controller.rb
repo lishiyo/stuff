@@ -1,34 +1,42 @@
 class LinksController < ApplicationController
-	
+#	decorates_assigned :link
 	before_action :authenticate_user!, only: [:new, :create, :destroy]
+	before_action :set_link, only: [:edit, :update, :destroy]
 	
 	def index
-		@links = current_user.links
+		@links = LinkDecorator.decorate_collection(current_user.links)
 	end
 	
 	def new
 		@link = Link.new
-		@current_user = current_user
 	end
 	
 	def create
-		link = current_user.links.new(link_params)
+		@link = current_user.links.build(link_params)
 		
 		respond_to do |format|
-			if link.save
+			if @link.save
 				format.html { redirect_to user_links_path(current_user), notice: 'Link submitted!' }
 				format.js { }
-				format.json { render json: link, status: :created, location: user_links_path }
+				format.json { render json: @link, status: :created, location: user_links_path }
 			else
-				format.html { render action: :new }
-				format.json { render json: link.errors, status: :unprocessable_entity }
+				format.html do
+					flash.now[:errors] = @link.errors.full_messages
+					render action: :new 
+				end
+				format.json { render json: @link.errors.full_messages, status: :unprocessable_entity }
 			end
 		end
 	end
 	
-	def destroy
-		link = Link.find(params[:id])
-		if link.destroy!
+	def edit
+	end
+	
+	def update
+	end
+	
+	def destroy	
+		if @link.destroy!
 			flash[:success] = "Link deleted."
 			redirect_to root_url
 		else
@@ -39,8 +47,13 @@ class LinksController < ApplicationController
 	
 	private 
 	
+	def set_link
+		@link = Link.find(params[:id])
+	end
+	
 	def link_params
 		params.require(:link).permit(:url, :title)
 	end
+	
 	
 end
