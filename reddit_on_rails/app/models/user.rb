@@ -5,4 +5,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 	has_many :links, class_name: "Link", foreign_key: :user_id, primary_key: :id
 	
+	# accepts_nested_attributes_for :links
+	
 end

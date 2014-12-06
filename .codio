@@ -3,7 +3,7 @@
 
 // Run button configuration
   "commands": {
-        "Rails s": "cd reddit_on_rails && TRUSTED_IP=172.17.42.1 bundle exec rails s"
+        "Rails s": "cd reddit_on_rails && TRUSTED_IP=172.17.42.1 bundle exec rails s puma"
   },
 
 // Preview button configuration

@@ -1,7 +1,4 @@
-<h2>reddit for teh cool kids</h2>
+<h2>re-reddit</h2>
 
-<ul>
-  <% @links.each do |link| %>
-	<li><%= link_to "#{link.title}", link.url %></li>
-  <% end %>
-</ul>
+<%= render partial: "links/link", collection: @links %>
+<%= will_paginate @links %>
