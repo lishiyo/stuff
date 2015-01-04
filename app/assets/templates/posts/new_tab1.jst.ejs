@@ -1,0 +1,29 @@
+<div class="bbm-modal__section">
+	<form>
+			
+	<div class="form-group">
+		<input type="hidden" name="post[blog_id]" value="1">
+	</div>
+	
+	<div class="form-group">
+		<label for="post_title">Title: </label>
+		<input type="text" name="post[title]" class="form-control">
+	</div>
+	
+	<div class="form-group">
+		
+		<a href="#" class="upload-fp">upload images</a>
+		<input type="hidden" name="post[filepicker_urls]" id="post_filepicker_urls">
+		<div class="image-thumbnails"></div>
+		
+	</div>	
+	
+	<div class="form-group wysiwyg">
+    <textarea id="post-content" name="post[content]">
+		 </textarea>
+	</div>
+	
+<!-- 	<button type="submit" class="createPost">POST</button> -->
+  <input type="submit" class="submit-el" value="POST">
+	</form>
+</div>

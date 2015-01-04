@@ -1,0 +1,35 @@
+<h1><%= @blog.name %></h1>
+<p><%= @blog.description %></p>
+
+<%= filepicker_image_tag @blog.avatar_url, w: 160, h: 160, fit: 'clip' %>
+
+<section>Posts</section>
+
+<!-- post modal -->
+<a href="#" class="open-post-modal" data-id="<%= @blog.id %>" >
+	Post Modal
+</a>
+<div class="post-modal"></div>
+
+<div class="container">
+	<div class="row">
+		
+<h2>Create New Post</h2>
+	<%= render partial: "posts/new", locals: { post: Post.new } %>
+
+		
+	</div>
+</div>
+
+<div class="container">
+	
+<h2>Posts</h2>
+<% if @blog.posts.count > 0 %>
+	<% @blog.posts.each do |p| %>
+		<%= render partial: "posts/post", locals: { post: p } %>
+	<% end %>
+	
+<% end %>
+	
+	
+</div>

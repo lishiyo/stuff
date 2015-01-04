@@ -1,0 +1,22 @@
+<h1>Create Blog</h1>
+
+<%= form_for @blog do |f| %>
+<div>
+	<%= f.label :name, "Name:" %>
+	<%= f.text_field :name %>
+</div>
+<div>
+	<%= f.label :description, "Description (max 140 char):" %>
+	<%= f.text_area :description %>
+</div>
+<div>
+	<%= f.label :user_id, "user_id" %>
+	<%= f.number_field :user_id %>
+</div>
+  <div>
+    <%= f.label :avatar_url, "upload an avatar for your blog:" %>
+    <%= f.filepicker_field :avatar_url, dragdrop: true, store_location: 'S3' %> 
+  </div>
+
+  <%= f.submit %>
+<% end %>

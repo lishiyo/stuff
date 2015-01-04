@@ -1,0 +1,14 @@
+<h1>Create User with Avatar</h1>
+
+<%= form_for @user do |f| %>
+<div>
+	<%= f.label :username, "Username:" %>
+	<%= f.text_field :username %>
+</div>
+  <div>
+    <%= f.label :filepicker_url, "Upload Your Avatar:" %>
+    <%= f.filepicker_field :filepicker_url, multiple: true, dragdrop: true, store_location: 'S3' %> <!-- User#filepicker_url is a regular string column -->
+  </div>
+
+  <%= f.submit %>
+<% end %>
