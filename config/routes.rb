@@ -8,7 +8,12 @@ Rails.application.routes.draw do
 		resources :posts,  only: [:index, :new]
 	end
 	
-	resources :posts, only: [:show, :create]
+	resources :posts, only: [:show, :create] do
+		member do
+			get 'comments'
+			post 'new_comment'
+		end
+	end
 	get 'dashboard', to: 'users#dashboard', as: 'dashboard'
 	
 	root 'blogs#new'

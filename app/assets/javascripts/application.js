@@ -15,19 +15,18 @@
 //= require jquery.serializejson.min
 //= require bootstrap-sprockets
 //= require underscore
-
-//= require filepicker
-//= require filepicker_test
-
 //= require backbone
 //= require backbone.modal-min
+
 //= require bootsy
-//= require froala_editor.min.js
+
 //= require bootstrap-wysihtml5
 
+//= require filepicker_test
 //= require_tree ../templates
 //= require_tree ./models
 //= require_tree ./collections
+//= require_tree ./utils
 //= require_tree ./views
 //= require_tree ./routers
 //= require_tree .

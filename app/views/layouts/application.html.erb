@@ -2,17 +2,20 @@
 <html>
 <head>
   <title>FilepickerTest</title>
+	
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
 	
-<!-- 	<%= filepicker_js_include_tag %> -->
-	
+	<%= filepicker_js_include_tag %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 	
   <%= csrf_meta_tags %>
 </head>
 <body>
 
+	
 <%= yield %>
 
 </body>
+	
+	
 </html>

@@ -1,0 +1,30 @@
+<div class="comments-container">
+	
+<ul>
+
+	<% comments.each(function(comment, idx){ %>
+ 		<% if (comment.child_comments().length > 0) { %> 
+			<li><%= comment.escape('body') %> | 
+				<a href="" class="reply-comment" data-parent_id="<%= comment.id %>">reply</a>	
+			</li>
+	
+			<ul>
+			<%= JST['comments/index']({ comments: comment.child_comments() }) %>
+		</ul>
+	
+<% } else { %>
+	
+			<li><%= comment.escape('body') %> | 
+				<a href="" class="reply-comment" data-parent_id="<%= comment.id %>">reply</a>	
+			</li>
+	
+		<% } %> 
+	
+	<% }) %>
+	
+	<a href="" class="reply-comment">reply</a> | 
+	
+</ul>
+	
+	
+</div>

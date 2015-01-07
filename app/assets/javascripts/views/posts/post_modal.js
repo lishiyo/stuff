@@ -1,8 +1,9 @@
+
+
 FilepickerTest.Modals.PostModal = Backbone.Modal.extend({
 	
 // 	template: _.template($('#modal-template').html()),
 	template: JST['posts/new_container'],
-	// main view container
 	viewContainer: '.my-container',
 	cancelEl: '.bbm-button',
 	
@@ -14,7 +15,6 @@ FilepickerTest.Modals.PostModal = Backbone.Modal.extend({
 	initialize: function(opts){
 		this.blog_id = opts.blog_id;
 		filepicker.setKey("AFmd243qR4C3FGkOJfBTnz");
-		
 	},
 	
 	onShow: function(){
@@ -104,15 +104,17 @@ FilepickerTest.Modals.PostModal = Backbone.Modal.extend({
 				this.submit();
 			}.bind(this),
 			error: function() {
-				console.log("something went wrong")
+				console.log("something went wrong");
 			}
 		});
 		
 	},
 	
 	submit: function(event) {
-		console.log("clicked submit");
-		window.location.replace("/blogs/"+this.blog_id);
+		event.preventDefault();
+		this.$(".modal").removeClass("is-open");
+// 		console.log("clicked submit");
+// 		window.location.replace("/blogs/"+this.blog_id);
 	},
 
 	views: {
@@ -125,6 +127,7 @@ FilepickerTest.Modals.PostModal = Backbone.Modal.extend({
 		'click #tab2': {
 			name: 'tab2',
 			view: JST["posts/new_tab2"],
+// 			view: _.template($('#modal-view2-template').html()),
 			onActive: 'setImagesTab'
 		},
 	},
@@ -138,23 +141,32 @@ FilepickerTest.Modals.PostModal = Backbone.Modal.extend({
 		this.$('.bbm-modal__tab a').removeClass('active');
 		this.$('#'+options.name).addClass('active'); 
 		
+		this.makeDropPane();
+	},
+	
+	makeDropPane: function(){
 		
-		setTimeout(function(){
-			
-			filepicker.makeDropPane($('#exampleDropPane')[0], {
+	setTimeout(function(){
+		var targetPane = $('#exampleDropPane');
+		
+			console.log("dom2", targetPane[0]);
+		
+			filepicker.makeDropPane(targetPane[0], {
 				multiple: true,
-				dragEnter: function(event) {
-					event.preventDefault();
+				dragEnter: function() {
+					
 					$("#exampleDropPane").html("Drop to upload").css({
 						'backgroundColor': "#E0E0E0",
-						'border': "1px solid #000"
+						'border': "1px solid #000",
+						"padding": '10px'
 					});
 				},
-				dragLeave: function(event) {
-					event.preventDefault();
+				dragLeave: function() {
+					
 					$("#exampleDropPane").html("Drop files here").css({
 						'backgroundColor': "#F6F6F6",
-						'border': "1px dashed #666"
+						'border': "1px dashed #666",
+						"padding": '10px'
 					});
 				},
 				onSuccess: function(Blobs) {
@@ -170,7 +182,7 @@ FilepickerTest.Modals.PostModal = Backbone.Modal.extend({
 			});
 			
 			
-		}, 10);
+		}, 600);
 
 	}
 	

@@ -5,6 +5,11 @@
 	<%= filepicker_image_tag file_url, w: 300, h: 300, fit: 'clip' %>
 <% end %>
 	
-<p><%= post.content.html_safe %></p>
+<p><%= post.content.html_safe if post.content %></p>
+
+	<a href="#/posts/<%= post.id %>/comments">comment</a>
+		<div id="post-comments-<%= post.id %>" class="comments-container">
+			
+		</div>
 	
 </div>
