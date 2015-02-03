@@ -1,0 +1,9 @@
+<ul>
+		<% comment.child_comments().each(function(cc){ %>
+			<li><%= cc.escape('body') %>
+				<br>
+				<a href="" class="reply-comment" data-parent_id="<%= cc.id %>">reply</a>				
+	</li>
+
+		<% }); %>	
+</ul>

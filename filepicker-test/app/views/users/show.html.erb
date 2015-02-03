@@ -1,0 +1,5 @@
+<%= @user.username %>
+
+<% @filepicker_urls.each do |file_url| %>
+	<%= filepicker_image_tag file_url, w: 160, h: 160, fit: 'clip' %>
+<% end %>
