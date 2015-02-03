@@ -1,0 +1,19 @@
+doctype html
+html
+	head
+		title= title
+		link(rel='stylesheet', href='http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css')
+		link(rel='stylesheet', href='/stylesheets/style.css')
+	body
+	.container
+		h1 Userlist!
+		br
+		ul
+			each user, i in userlist
+				li
+					a(href="mailto:#{user.email}")= user.username
+		br
+		#results
+	script(src='http://code.jquery.com/jquery-1.10.2.min.js')
+	script(src='http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js')
+	script(src='/javascripts/main.js')
